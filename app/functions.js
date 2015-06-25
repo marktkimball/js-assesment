@@ -48,6 +48,7 @@ exports.functionsAnswers = {
   },
 
   partialUsingArguments : function(fn) {
+
     var realArguments = Array.prototype.slice.call(arguments, 1, arguments.length);
     return function() {
       var moreArguments = realArguments.concat(Array.prototype.slice.call(arguments));
@@ -56,24 +57,24 @@ exports.functionsAnswers = {
   },
 
   curryIt : function(fn) {
-    // function applyArguments(fn, arguments) {
-    //   return fn.apply(null, arguments);
-    // }
-    //
-    // function newFunction(x, y, z){
-    //   if(arguments.length < 1){
-    //     return fn;
-    //   }else if(arguments.length < 2){
-    //     return function(b, c){
-    //       return x / b + c;
-    //     }
-    //   }else if(arguments.length <3){
-    //     return function(c){
-    //       return x / y + c
-    //     }
-    //   }else{
-    //     return x / y + z;
-    //   }
-    // }
+    function applyArguments(fn, arguments) {
+     return fn.apply(null, arguments);
+   }
+
+   function getArgumentAccumulator(accumulatedArguments, expectedArgumentsCount) {
+     return function (currentArgument) {
+       accumulatedArguments.push(currentArgument);
+
+       var allArgumentsProvided = accumulatedArguments.length === expectedArgumentsCount;
+
+       if (allArgumentsProvided) {
+         return applyArguments(fn, accumulatedArguments);
+       } else {
+         return getArgumentAccumulator(accumulatedArguments, expectedArgumentsCount);
+       }
+     };
+   }
+
+   return getArgumentAccumulator([], fn.length);
   }
 };

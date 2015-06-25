@@ -17,9 +17,13 @@ exports.bestPracticesAnswers = {
 
   functions : function(flag) {
     if (flag) {
-      var getValue = function () { return 'a'; }
+      var getValue = function () {
+        return 'a';
+        }
     } else {
-      var getValue = function () { return 'b'; }
+      var getValue = function () {
+        return 'b';
+        }
     }
 
     return getValue();

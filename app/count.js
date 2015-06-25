@@ -20,10 +20,3 @@ exports.countAnswers = {
     };
   }
 };
-
-//This code works too, but JS-Assesment hates it:
-    //   setInterval(function(){
-    //     if(start <= end){
-    //       console.log(start);
-    //       start++;;}}, 100);
-    // }

@@ -82,7 +82,7 @@ exports.arraysAnswers = {
 
     for (var val in allItems) {
       if (allItems[val] > 1) {
-        duplicates.push(eval(val));
+        duplicates.push(+val);
       }
     }
 
